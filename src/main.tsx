@@ -5,12 +5,15 @@ import App from "./App.tsx";
 import { FirebaseAppProvider } from "reactfire";
 import { firebaseConfig } from "./config/firebase.ts";
 import FirebaseService from "./config/firebase-services.tsx";
+import { BrowserRouter } from "react-router";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <FirebaseAppProvider firebaseConfig={firebaseConfig}>
       <FirebaseService>
-        <App />
+        <BrowserRouter>
+          <App />
+        </BrowserRouter>
       </FirebaseService>
     </FirebaseAppProvider>
   </StrictMode>

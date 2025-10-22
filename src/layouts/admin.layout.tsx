@@ -1,5 +1,11 @@
+import { Outlet } from "react-router";
+
 const AdminLayout = () => {
-  return <div></div>;
+  return (
+    <div>
+      <Outlet />
+    </div>
+  );
 };
 
 export default AdminLayout;
