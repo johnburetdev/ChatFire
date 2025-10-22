@@ -8,7 +8,6 @@ const AuthLayout = () => {
   if (status === "loading" || !hasEmitted) {
     return <div>Loading...</div>;
   }
-
   //Dejamos que el usuario logeado tenga acceso, y mo tenga que volver a ver la pantalla de login
   if (status === "success" && signInCheckResult.signedIn) {
     return <Navigate to="/admin" replace />;
