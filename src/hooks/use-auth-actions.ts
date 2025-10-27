@@ -47,7 +47,9 @@ export const useAuthActions = () => {
            const currentUser = await createUserWithEmailAndPassword(auth, data.email, data.password);
            
            if(currentUser.user){
-            await updateProfile(currentUser.user, {displayName: data.displayName} )
+            await updateProfile(currentUser.user, {displayName: data.displayName})
+
+            await currentUser.user.reload();
            }
            
            return {
