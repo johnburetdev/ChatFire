@@ -45,42 +45,54 @@ const ItemTask = ({ task }: Props) => {
   };
 
   return (
-    <Card>
-      <CardHeader className="">
-        <CardTitle
-          className={cn(
-            "text-lg font-semibold",
-            task.completed ? "line-through text-gray-500" : ""
-          )}
-        >
-          {task.title}
-        </CardTitle>
-        <CardAction className="space-x-2">
-          <Button
-            disabled={isPending}
-            variant={"outline"}
-            onClick={handleToggleCompletion}
-          >
-            {task.completed ? "Incompleted " : "Completed"}
-          </Button>
-          <Button
-            disabled={isPending}
-            variant={"destructive"}
-            onClick={handleDelete}
-          >
-            Delete
-          </Button>
-        </CardAction>
-        {task.description && (
-          <CardContent
-            className={cn(
-              "font-semibold",
-              task.completed ? "line-through text-gray-500" : ""
+    <Card className={cn(
+      "transition-colors duration-200",
+      task.completed ? "bg-muted/50" : "bg-card hover:bg-accent/5"
+    )}>
+      <CardHeader className="space-y-2 p-4">
+        <div className="flex items-start justify-between gap-4">
+          <div className="space-y-1 flex-1">
+            <CardTitle
+              className={cn(
+                "text-base font-semibold line-clamp-2",
+                task.completed && "text-muted-foreground line-through"
+              )}
+            >
+              {task.title}
+            </CardTitle>
+            {task.description && (
+              <CardContent className="p-0">
+                <p className={cn(
+                  "text-sm text-muted-foreground line-clamp-2",
+                  task.completed && "line-through"
+                )}>
+                  {task.description}
+                </p>
+              </CardContent>
             )}
-          >
-            {task.description}
-          </CardContent>
-        )}
+          </div>
+          
+          <CardAction className="flex gap-2 items-start">
+            <Button
+              disabled={isPending}
+              variant={task.completed ? "outline" : "secondary"}
+              onClick={handleToggleCompletion}
+              size="sm"
+              className="h-8"
+            >
+              {task.completed ? "Undo" : "Complete"}
+            </Button>
+            <Button
+              disabled={isPending}
+              variant="ghost"
+              onClick={handleDelete}
+              size="sm"
+              className="h-8 hover:bg-destructive/10 hover:text-destructive"
+            >
+              Delete
+            </Button>
+          </CardAction>
+        </div>
       </CardHeader>
     </Card>
   );

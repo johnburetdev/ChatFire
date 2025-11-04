@@ -20,28 +20,37 @@ const Navbar = () => {
   const { logOut } = useAuthActions();
 
   return (
-    <header className="shadow-md border-b">
-      <nav className="p-4 flex gap-4">
-        {navegation.map((item) => (
-          <NavLink
-            key={item.name}
-            to={item.href}
-            className={({ isActive }) =>
-              cn(
-                "text=gray-700 hover:text-blue-800 flex items-center gap-2",
-                isActive ? "text-blue-800 font-semibold" : "text-gray-700"
-              )
-            }
-            end
+    <header className="sticky top-0 z-50 backdrop-blur-sm bg-background/95 border-b shadow-sm">
+      <nav className="container mx-auto p-4">
+        <div className="flex items-center gap-1 md:gap-2">
+          {navegation.map((item) => (
+            <NavLink
+              key={item.name}
+              to={item.href}
+              className={({ isActive }) =>
+                cn(
+                  "px-3 py-2 rounded-md transition-colors duration-200 flex items-center gap-2 text-sm hover:bg-accent",
+                  isActive 
+                    ? "bg-primary text-primary-foreground font-medium" 
+                    : "text-muted-foreground hover:text-foreground"
+                )
+              }
+              end
+            >
+              <item.icon className="w-4 h-4" />
+              <span className="hidden md:inline">{item.name}</span>
+            </NavLink>
+          ))}
+          <Button 
+            onClick={logOut} 
+            variant="ghost" 
+            size="sm"
+            className="ml-auto hover:bg-destructive/10 hover:text-destructive"
           >
-            <item.icon className="w-5 h-5" />
-            {item.name}
-          </NavLink>
-        ))}
-        <Button onClick={logOut} className="ml-auto" variant={"destructive"}>
-          <LogOut className="w-5 h-5" />
-          Logout
-        </Button>
+            <LogOut className="w-4 h-4" />
+            <span className="hidden md:inline ml-2">Logout</span>
+          </Button>
+        </div>
       </nav>
     </header>
   );

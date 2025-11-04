@@ -15,13 +15,15 @@ const MessageChat = ({ message }: Props) => {
   return (
     <div
       className={cn(
-        "max-w-[150px] p-2 m-2 rounded",
-        isFriend ? "bg-pink-200" : "bg-green-200 ml-auto"
+        "max-w-[280px] p-3 rounded-2xl shadow-sm",
+        isFriend 
+          ? "bg-muted text-muted-foreground self-start rounded-tl-sm" 
+          : "bg-primary text-primary-foreground self-end rounded-tr-sm"
       )}
     >
-      <p>{message.text}</p>
-      <p className="truncate text-xs">
-        {isFriend ? <FriendEmail friendUID={message.senderId} /> : user.email}
+      <p className="wrap-break-word text-sm">{message.text}</p>
+      <p className="truncate text-xs mt-1 opacity-75">
+        {isFriend ? <FriendEmail friendUID={message.senderId} /> : user?.email}
       </p>
     </div>
   );

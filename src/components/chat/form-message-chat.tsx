@@ -13,6 +13,7 @@ import { Button } from "@/components/ui/button";
 import { useMessagesActions } from "@/hooks/use-messages-actions";
 import { toast } from "sonner";
 import { useTransition } from "react";
+import { Send } from "lucide-react";
 
 interface Props {
   roomId: string;
@@ -43,21 +44,29 @@ const FormMessageChat = ({ roomId }: Props) => {
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-2">
+      <form onSubmit={form.handleSubmit(onSubmit)} className="flex gap-2">
         <FormField
           control={form.control}
           name="text"
           render={({ field }) => (
-            <FormItem>
+            <FormItem className="flex-1">
               <FormControl>
-                <Input placeholder="Send message" {...field} />
+                <Input 
+                  placeholder="Write a message..." 
+                  className="focus-visible:ring-1"
+                  {...field} 
+                />
               </FormControl>
               <FormMessage />
             </FormItem>
           )}
         />
-        <Button disabled={isLoading} type="submit">
-          {isLoading ? "Sending..." : "Send"}
+        <Button size="sm" disabled={isLoading} type="submit">
+          {isLoading ? (
+            <span className="h-4 w-4 animate-spin">...</span>
+          ) : (
+            <Send className="h-4 w-4" />
+          )}
         </Button>
       </form>
     </Form>
