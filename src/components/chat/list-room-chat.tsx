@@ -1,4 +1,4 @@
-import UserRoomActions from "@/hooks/use-room-actions";
+import { UserRoomActions } from "@/hooks/use-room-actions";
 
 import RoomChat from "./room-chat";
 
