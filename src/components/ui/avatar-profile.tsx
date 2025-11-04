@@ -15,7 +15,12 @@ const sizeClasses = {
   lg: "h-24 w-24",
 };
 
-export function AvatarProfile({ src, name, size = "md", className = "" }: AvatarProfileProps) {
+export function AvatarProfile({
+  src,
+  name,
+  size = "md",
+  className = "",
+}: AvatarProfileProps) {
   const [imageError, setImageError] = useState(false);
   const initials = name
     ? name
@@ -26,7 +31,9 @@ export function AvatarProfile({ src, name, size = "md", className = "" }: Avatar
         .slice(0, 2)
     : "?";
 
-  const fallbackImage = `https://api.dicebear.com/7.x/initials/svg?seed=${name || 'Guest'}`;
+  const fallbackImage = `https://api.dicebear.com/7.x/initials/svg?seed=${
+    name || "Guest"
+  }`;
 
   return (
     <Avatar className={`${sizeClasses[size]} ${className}`}>
@@ -37,10 +44,7 @@ export function AvatarProfile({ src, name, size = "md", className = "" }: Avatar
           onError={() => setImageError(true)}
         />
       ) : (
-        <AvatarImage
-          src={fallbackImage}
-          alt={name || "Profile picture"}
-        />
+        <AvatarImage src={fallbackImage} alt={name || "Profile picture"} />
       )}
       <AvatarFallback className="bg-primary/10">
         <User className="h-6 w-6 text-primary" />

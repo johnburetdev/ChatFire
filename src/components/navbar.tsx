@@ -51,8 +51,8 @@ const Navbar = () => {
                 className={({ isActive }) =>
                   cn(
                     "inline-flex items-center justify-center rounded-md px-3 py-1.5 text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
-                    isActive 
-                      ? "bg-primary/10 text-primary hover:bg-primary/20" 
+                    isActive
+                      ? "bg-primary/10 text-primary hover:bg-primary/20"
                       : "text-muted-foreground hover:bg-accent/50"
                   )
                 }
@@ -63,8 +63,8 @@ const Navbar = () => {
               </NavLink>
             ))}
 
-            <Button 
-              onClick={logOut} 
+            <Button
+              onClick={logOut}
               variant="ghost"
               size="sm"
               className="ml-2 hover:bg-destructive/10 hover:text-destructive"
@@ -76,10 +76,7 @@ const Navbar = () => {
         </div>
 
         {/* Mobile navigation */}
-        <div className={cn(
-          "md:hidden",
-          isMenuOpen ? "block" : "hidden"
-        )}>
+        <div className={cn("md:hidden", isMenuOpen ? "block" : "hidden")}>
           <div className="space-y-1 pb-3 pt-2">
             {navegation.map((item) => (
               <NavLink
@@ -88,8 +85,8 @@ const Navbar = () => {
                 className={({ isActive }) =>
                   cn(
                     "block rounded-md px-3 py-2 text-sm font-medium transition-colors",
-                    isActive 
-                      ? "bg-primary/10 text-primary" 
+                    isActive
+                      ? "bg-primary/10 text-primary"
                       : "text-muted-foreground hover:bg-accent/50"
                   )
                 }
@@ -102,12 +99,12 @@ const Navbar = () => {
                 </span>
               </NavLink>
             ))}
-            
-            <Button 
+
+            <Button
               onClick={() => {
                 setIsMenuOpen(false);
                 logOut();
-              }} 
+              }}
               variant="ghost"
               size="sm"
               className="w-full justify-start px-3 py-2 hover:bg-destructive/10 hover:text-destructive"

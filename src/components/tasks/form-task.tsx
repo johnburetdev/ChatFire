@@ -77,9 +77,9 @@ const FormTask = () => {
             </FormItem>
           )}
         />
-        <Button 
-          disabled={isPending} 
-          type="submit" 
+        <Button
+          disabled={isPending}
+          type="submit"
           className="w-full bg-primary/10 text-primary hover:bg-primary/20"
         >
           {isPending ? (

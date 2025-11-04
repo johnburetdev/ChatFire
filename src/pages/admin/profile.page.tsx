@@ -11,7 +11,9 @@ const ProfilePage = () => {
   return (
     <div className="container mx-auto p-6 space-y-6">
       <div className="flex items-center justify-between">
-        <h1 className="text-3xl font-semibold tracking-tight">Profile Settings</h1>
+        <h1 className="text-3xl font-semibold tracking-tight">
+          Profile Settings
+        </h1>
       </div>
 
       <div className="grid gap-6 md:grid-cols-2">
@@ -19,8 +21,8 @@ const ProfilePage = () => {
         <div className="space-y-6">
           <div className="flex items-center gap-6">
             <div className="relative">
-              <AvatarProfile 
-                src={user.photoURL} 
+              <AvatarProfile
+                src={user.photoURL}
                 name={user.displayName}
                 size="lg"
                 className="border-2 border-primary/20"
@@ -28,7 +30,9 @@ const ProfilePage = () => {
               <div className="absolute bottom-0 right-0 h-4 w-4 rounded-full border-2 border-background bg-primary"></div>
             </div>
             <div>
-              <h2 className="text-2xl font-semibold">{user.displayName || 'Guest'}</h2>
+              <h2 className="text-2xl font-semibold">
+                {user.displayName || "Guest"}
+              </h2>
               <p className="text-sm text-muted-foreground">{user.email}</p>
             </div>
           </div>
@@ -44,14 +48,18 @@ const ProfilePage = () => {
             <div className="flex items-center justify-between">
               <div>
                 <h4 className="font-medium leading-none">Email Verification</h4>
-                <p className="text-sm text-muted-foreground">Your email verification status</p>
+                <p className="text-sm text-muted-foreground">
+                  Your email verification status
+                </p>
               </div>
-              <div className={`px-2.5 py-0.5 text-xs font-medium rounded-full ${
-                user.emailVerified 
-                  ? 'bg-primary/10 text-primary'
-                  : 'bg-destructive/10 text-destructive'
-              }`}>
-                {user.emailVerified ? 'Verified' : 'Not Verified'}
+              <div
+                className={`px-2.5 py-0.5 text-xs font-medium rounded-full ${
+                  user.emailVerified
+                    ? "bg-primary/10 text-primary"
+                    : "bg-destructive/10 text-destructive"
+                }`}
+              >
+                {user.emailVerified ? "Verified" : "Not Verified"}
               </div>
             </div>
           </div>

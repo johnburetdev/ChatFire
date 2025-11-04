@@ -49,8 +49,8 @@ const FormProfile = ({ user }: Props) => {
               <FormItem>
                 <FormLabel>Display Name</FormLabel>
                 <FormControl>
-                  <Input 
-                    placeholder="Enter your display name" 
+                  <Input
+                    placeholder="Enter your display name"
                     {...field}
                     className="w-full"
                   />
@@ -68,15 +68,15 @@ const FormProfile = ({ user }: Props) => {
                 <FormLabel>Profile Picture URL</FormLabel>
                 <FormControl>
                   <div className="grid gap-2">
-                    <Input 
-                      placeholder="https://example.com/photo.jpg" 
+                    <Input
+                      placeholder="https://example.com/photo.jpg"
                       {...field}
                       className="w-full"
                     />
                     {field.value && (
                       <div className="relative">
-                        <AvatarProfile 
-                          src={field.value} 
+                        <AvatarProfile
+                          src={field.value}
                           name={form.getValues("displayName")}
                           size="md"
                           className="border border-border"
@@ -92,11 +92,7 @@ const FormProfile = ({ user }: Props) => {
         </div>
 
         <div className="flex items-center gap-4">
-          <Button
-            type="submit"
-            disabled={loading}
-            className="w-full sm:w-auto"
-          >
+          <Button type="submit" disabled={loading} className="w-full sm:w-auto">
             {loading ? (
               <span className="flex items-center gap-2">
                 <div className="h-4 w-4 animate-spin rounded-full border-2 border-current border-t-transparent" />

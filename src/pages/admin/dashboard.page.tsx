@@ -1,5 +1,12 @@
 import { useUser } from "reactfire";
-import { Mail, User, ActivitySquare, Clock, Calendar, Users2 } from "lucide-react";
+import {
+  Mail,
+  User,
+  ActivitySquare,
+  Clock,
+  Calendar,
+  Users2,
+} from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 const DashbordPage = () => {
@@ -8,19 +15,27 @@ const DashbordPage = () => {
   return (
     <div className="container mx-auto p-6 space-y-6">
       <div className="flex items-center justify-between">
-        <h1 className="text-3xl font-semibold tracking-tight">Welcome back, {user?.displayName || "Guest"}!</h1>
+        <h1 className="text-3xl font-semibold tracking-tight">
+          Welcome back, {user?.displayName || "Guest"}!
+        </h1>
       </div>
 
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
         {/* Profile Card */}
         <Card>
           <CardHeader className="flex flex-row items-center justify-between pb-2 space-y-0">
-            <CardTitle className="text-sm font-medium">Profile Status</CardTitle>
+            <CardTitle className="text-sm font-medium">
+              Profile Status
+            </CardTitle>
             <User className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">{user?.displayName || "Guest"}</div>
-            <p className="text-xs text-muted-foreground mt-1">{user?.email || "No email"}</p>
+            <div className="text-2xl font-bold">
+              {user?.displayName || "Guest"}
+            </div>
+            <p className="text-xs text-muted-foreground mt-1">
+              {user?.email || "No email"}
+            </p>
           </CardContent>
         </Card>
 
@@ -56,7 +71,9 @@ const DashbordPage = () => {
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">9</div>
-            <p className="text-xs text-muted-foreground mt-1">Active contacts</p>
+            <p className="text-xs text-muted-foreground mt-1">
+              Active contacts
+            </p>
           </CardContent>
         </Card>
       </div>
@@ -64,7 +81,9 @@ const DashbordPage = () => {
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-7">
         <Card className="lg:col-span-4">
           <CardHeader className="flex flex-row items-center justify-between pb-2 space-y-0">
-            <CardTitle className="text-sm font-medium">Recent Activity</CardTitle>
+            <CardTitle className="text-sm font-medium">
+              Recent Activity
+            </CardTitle>
             <Clock className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
@@ -74,7 +93,9 @@ const DashbordPage = () => {
                   <ActivitySquare className="h-5 w-5 text-primary" />
                 </div>
                 <div className="space-y-1">
-                  <p className="text-sm font-medium leading-none">New task added</p>
+                  <p className="text-sm font-medium leading-none">
+                    New task added
+                  </p>
                   <p className="text-sm text-muted-foreground">2 hours ago</p>
                 </div>
               </div>
@@ -83,7 +104,9 @@ const DashbordPage = () => {
                   <Mail className="h-5 w-5 text-primary" />
                 </div>
                 <div className="space-y-1">
-                  <p className="text-sm font-medium leading-none">New message received</p>
+                  <p className="text-sm font-medium leading-none">
+                    New message received
+                  </p>
                   <p className="text-sm text-muted-foreground">3 hours ago</p>
                 </div>
               </div>
@@ -103,8 +126,12 @@ const DashbordPage = () => {
                   <Calendar className="h-5 w-5 text-primary" />
                 </div>
                 <div className="space-y-1">
-                  <p className="text-sm font-medium leading-none">Team Meeting</p>
-                  <p className="text-sm text-muted-foreground">Today, 2:00 PM</p>
+                  <p className="text-sm font-medium leading-none">
+                    Team Meeting
+                  </p>
+                  <p className="text-sm text-muted-foreground">
+                    Today, 2:00 PM
+                  </p>
                 </div>
               </div>
             </div>

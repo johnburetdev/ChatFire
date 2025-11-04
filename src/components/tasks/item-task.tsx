@@ -85,8 +85,8 @@ const ItemTask = ({ task }: Props) => {
               size="sm"
               className={cn(
                 "h-8",
-                task.completed 
-                  ? "hover:bg-destructive/10 hover:text-destructive" 
+                task.completed
+                  ? "hover:bg-destructive/10 hover:text-destructive"
                   : "hover:bg-primary/10 hover:text-primary"
               )}
             >
