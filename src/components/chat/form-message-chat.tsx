@@ -51,10 +51,10 @@ const FormMessageChat = ({ roomId }: Props) => {
           render={({ field }) => (
             <FormItem className="flex-1">
               <FormControl>
-                <Input 
-                  placeholder="Write a message..." 
+                <Input
+                  placeholder="Write a message..."
                   className="focus-visible:ring-1"
-                  {...field} 
+                  {...field}
                 />
               </FormControl>
               <FormMessage />

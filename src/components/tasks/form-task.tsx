@@ -1,4 +1,5 @@
 import { taskZodSchema, type TaskZodSchemaType } from "@/lib/zod-schema";
+import { Plus, ListTodo } from "lucide-react";
 import { zodResolver } from "@hookform/resolvers/zod";
 
 import { useForm } from "react-hook-form";
@@ -49,10 +50,10 @@ const FormTask = () => {
             <FormItem>
               <FormLabel className="text-sm font-medium">Title</FormLabel>
               <FormControl>
-                <Input 
-                  placeholder="Enter task title..." 
+                <Input
+                  placeholder="Enter task title..."
                   className="focus-visible:ring-1"
-                  {...field} 
+                  {...field}
                 />
               </FormControl>
               <FormMessage />
@@ -66,10 +67,10 @@ const FormTask = () => {
             <FormItem>
               <FormLabel className="text-sm font-medium">Description</FormLabel>
               <FormControl>
-                <Input 
-                  placeholder="Add task details..." 
+                <Input
+                  placeholder="Add task details..."
                   className="focus-visible:ring-1"
-                  {...field} 
+                  {...field}
                 />
               </FormControl>
               <FormMessage />
@@ -78,8 +79,8 @@ const FormTask = () => {
         />
         <Button 
           disabled={isPending} 
-          type="submit"
-          className="w-full"
+          type="submit" 
+          className="w-full bg-primary/10 text-primary hover:bg-primary/20"
         >
           {isPending ? (
             <span className="flex items-center gap-2">
@@ -87,7 +88,10 @@ const FormTask = () => {
               Creating...
             </span>
           ) : (
-            "Create Task"
+            <span className="flex items-center gap-2">
+              <Plus className="h-4 w-4" />
+              Create Task
+            </span>
           )}
         </Button>
       </form>

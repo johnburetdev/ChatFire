@@ -12,7 +12,11 @@ const ChatPage = () => {
   return (
     <div className="grid md:grid-cols-[300px_1fr] gap-4 h-[calc(100vh-4rem)]">
       <section className="flex flex-col gap-4 p-4 bg-background/95 rounded-lg border shadow-sm">
-        <Suspense fallback={<div className="text-muted-foreground">Loading chats...</div>}>
+        <Suspense
+          fallback={
+            <div className="text-muted-foreground">Loading chats...</div>
+          }
+        >
           <FormSearchChat handleClickRoomId={handleClickRoomId} />
           <div className="flex-1 overflow-y-auto">
             <ListRoomChat handleClickRoomId={handleClickRoomId} />
@@ -21,7 +25,13 @@ const ChatPage = () => {
       </section>
       <section className="flex flex-col bg-background/95 rounded-lg border shadow-sm">
         {roomId ? (
-          <Suspense fallback={<div className="flex-1 grid place-items-center"><div className="text-muted-foreground">Loading messages...</div></div>}>
+          <Suspense
+            fallback={
+              <div className="flex-1 grid place-items-center">
+                <div className="text-muted-foreground">Loading messages...</div>
+              </div>
+            }
+          >
             <div className="flex flex-col h-full">
               <div className="flex-1 overflow-y-auto">
                 <MessagesChat roomId={roomId} />
@@ -33,7 +43,9 @@ const ChatPage = () => {
           </Suspense>
         ) : (
           <div className="flex-1 grid place-items-center">
-            <p className="text-muted-foreground">Select a chat to start messaging</p>
+            <p className="text-muted-foreground">
+              Select a chat to start messaging
+            </p>
           </div>
         )}
       </section>

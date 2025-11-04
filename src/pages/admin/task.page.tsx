@@ -21,7 +21,7 @@ const TaskPage = () => {
         {/* Tasks List Section */}
         <div className="space-y-4">
           <div className="rounded-lg border bg-card p-6">
-            <Suspense 
+            <Suspense
               fallback={
                 <div className="flex items-center justify-center h-32 text-muted-foreground">
                   Loading tasks...

@@ -9,10 +9,10 @@ const TaskList = () => {
       <div className="flex items-center justify-between mb-4">
         <h2 className="text-lg font-semibold">Your Tasks</h2>
         <span className="text-sm text-muted-foreground">
-          {tasks.length} {tasks.length === 1 ? 'task' : 'tasks'}
+          {tasks.length} {tasks.length === 1 ? "task" : "tasks"}
         </span>
       </div>
-      
+
       {tasks.length === 0 ? (
         <div className="text-center py-8 text-muted-foreground">
           <p>No tasks yet. Create one to get started!</p>

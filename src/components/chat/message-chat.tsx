@@ -16,8 +16,8 @@ const MessageChat = ({ message }: Props) => {
     <div
       className={cn(
         "max-w-[280px] p-3 rounded-2xl shadow-sm",
-        isFriend 
-          ? "bg-muted text-muted-foreground self-start rounded-tl-sm" 
+        isFriend
+          ? "bg-muted text-muted-foreground self-start rounded-tl-sm"
           : "bg-primary text-primary-foreground self-end rounded-tr-sm"
       )}
     >

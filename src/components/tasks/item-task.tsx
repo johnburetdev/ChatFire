@@ -1,4 +1,5 @@
 import type { Task } from "@/schemas/task.schemas";
+import { Check, X, Square, CheckSquare, Trash2 } from "lucide-react";
 import {
   Card,
   CardAction,
@@ -45,10 +46,12 @@ const ItemTask = ({ task }: Props) => {
   };
 
   return (
-    <Card className={cn(
-      "transition-colors duration-200",
-      task.completed ? "bg-muted/50" : "bg-card hover:bg-accent/5"
-    )}>
+    <Card
+      className={cn(
+        "transition-colors duration-200",
+        task.completed ? "bg-muted/50" : "bg-card hover:bg-accent/5"
+      )}
+    >
       <CardHeader className="space-y-2 p-4">
         <div className="flex items-start justify-between gap-4">
           <div className="space-y-1 flex-1">
@@ -62,24 +65,36 @@ const ItemTask = ({ task }: Props) => {
             </CardTitle>
             {task.description && (
               <CardContent className="p-0">
-                <p className={cn(
-                  "text-sm text-muted-foreground line-clamp-2",
-                  task.completed && "line-through"
-                )}>
+                <p
+                  className={cn(
+                    "text-sm text-muted-foreground line-clamp-2",
+                    task.completed && "line-through"
+                  )}
+                >
                   {task.description}
                 </p>
               </CardContent>
             )}
           </div>
-          
+
           <CardAction className="flex gap-2 items-start">
             <Button
               disabled={isPending}
-              variant={task.completed ? "outline" : "secondary"}
+              variant="ghost"
               onClick={handleToggleCompletion}
               size="sm"
-              className="h-8"
+              className={cn(
+                "h-8",
+                task.completed 
+                  ? "hover:bg-destructive/10 hover:text-destructive" 
+                  : "hover:bg-primary/10 hover:text-primary"
+              )}
             >
+              {task.completed ? (
+                <X className="h-4 w-4 mr-2" />
+              ) : (
+                <Check className="h-4 w-4 mr-2" />
+              )}
               {task.completed ? "Undo" : "Complete"}
             </Button>
             <Button
@@ -89,6 +104,7 @@ const ItemTask = ({ task }: Props) => {
               size="sm"
               className="h-8 hover:bg-destructive/10 hover:text-destructive"
             >
+              <Trash2 className="h-4 w-4 mr-2" />
               Delete
             </Button>
           </CardAction>
