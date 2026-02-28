@@ -6,6 +6,9 @@ export interface Room {
     partivipants: string[]
     createdAt: Timestamp | FieldValue
     lastMessage: LastMessage | null
+    unreadMessages?: {
+        [userId: string]: number
+    }
 }
 
 export interface LastMessage{

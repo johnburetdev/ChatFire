@@ -55,11 +55,11 @@ const FormSearchChat = ({ handleClickRoomId }: Props) => {
             render={({ field }) => (
               <FormItem>
                 <FormControl>
-                  <Input 
-                    type="email" 
-                    placeholder="Search by email..." 
+                  <Input
+                    type="email"
+                    placeholder="Search by email..."
                     className="pr-12"
-                    {...field} 
+                    {...field}
                   />
                 </FormControl>
                 <Button

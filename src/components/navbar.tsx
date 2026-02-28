@@ -1,55 +1,139 @@
 import { useAuthActions } from "@/hooks/use-auth-actions";
+import { useUnreadMessages } from "@/hooks/use-unread-messages";
 import {
   ClipboardCheck,
   LayoutDashboard,
   LogOut,
   MessageCircle,
   User,
+  Menu,
 } from "lucide-react";
 import { NavLink } from "react-router";
 import { Button } from "./ui/button";
 import { cn } from "@/lib/utils";
+import { useState, useMemo } from "react";
 
-const navegation = [
-  { name: "Dashboard", href: "/admin", icon: LayoutDashboard },
-  { name: "Messages", href: "/admin/chat", icon: MessageCircle },
-  { name: "Profile", href: "/admin/profile", icon: User },
-  { name: "Tasks", href: "/admin/tasks", icon: ClipboardCheck },
-];
 const Navbar = () => {
   const { logOut } = useAuthActions();
+  const { hasUnreadMessages } = useUnreadMessages();
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const navegation = useMemo(
+    () => [
+      { name: "Dashboard", href: "/admin", icon: LayoutDashboard },
+      {
+        name: "Messages",
+        href: "/admin/chat",
+        icon: MessageCircle,
+        showIndicator: hasUnreadMessages,
+      },
+      { name: "Profile", href: "/admin/profile", icon: User },
+      { name: "Tasks", href: "/admin/tasks", icon: ClipboardCheck },
+    ],
+    [hasUnreadMessages]
+  );
 
   return (
-    <header className="sticky top-0 z-50 backdrop-blur-sm bg-background/95 border-b shadow-sm">
-      <nav className="container mx-auto p-4">
-        <div className="flex items-center gap-1 md:gap-2">
-          {navegation.map((item) => (
-            <NavLink
-              key={item.name}
-              to={item.href}
-              className={({ isActive }) =>
-                cn(
-                  "px-3 py-2 rounded-md transition-colors duration-200 flex items-center gap-2 text-sm hover:bg-accent",
-                  isActive 
-                    ? "bg-primary text-primary-foreground font-medium" 
-                    : "text-muted-foreground hover:text-foreground"
-                )
-              }
-              end
-            >
-              <item.icon className="w-4 h-4" />
-              <span className="hidden md:inline">{item.name}</span>
-            </NavLink>
-          ))}
-          <Button 
-            onClick={logOut} 
-            variant="ghost" 
+    <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-backdrop-filter:bg-background/60">
+      <nav className="container mx-auto px-4">
+        <div className="flex h-14 items-center justify-between">
+          {/* Logo/Brand with chat icon */}
+          <div className="flex items-center gap-2">
+            <MessageCircle className="h-6 w-6 text-primary" />
+            <span className="font-semibold text-lg text-primary">ChatFire</span>
+          </div>
+
+          {/* Mobile menu button */}
+          <Button
+            variant="ghost"
             size="sm"
-            className="ml-auto hover:bg-destructive/10 hover:text-destructive"
+            className="md:hidden"
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
           >
-            <LogOut className="w-4 h-4" />
-            <span className="hidden md:inline ml-2">Logout</span>
+            <Menu className="h-5 w-5" />
           </Button>
+
+          {/* Desktop navigation */}
+          <div className="hidden md:flex md:items-center md:gap-1">
+            {navegation.map((item) => (
+              <NavLink
+                key={item.name}
+                to={item.href}
+                className={({ isActive }) =>
+                  cn(
+                    "inline-flex items-center justify-center rounded-md px-3 py-1.5 text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
+                    isActive
+                      ? "bg-primary/10 text-primary hover:bg-primary/20"
+                      : "text-muted-foreground hover:bg-accent/50"
+                  )
+                }
+                end
+              >
+                <div className="relative">
+                  <item.icon className="mr-2 h-4 w-4" />
+                  {item.showIndicator && (
+                    <div className="absolute -right-1 -top-1 h-2 w-2 rounded-full bg-destructive" />
+                  )}
+                </div>
+                <span>{item.name}</span>
+              </NavLink>
+            ))}
+
+            <Button
+              onClick={logOut}
+              variant="ghost"
+              size="sm"
+              className="ml-2 hover:bg-destructive/10 hover:text-destructive"
+            >
+              <LogOut className="h-4 w-4 mr-2" />
+              <span>Logout</span>
+            </Button>
+          </div>
+        </div>
+
+        {/* Mobile navigation */}
+        <div className={cn("md:hidden", isMenuOpen ? "block" : "hidden")}>
+          <div className="space-y-1 pb-3 pt-2">
+            {navegation.map((item) => (
+              <NavLink
+                key={item.name}
+                to={item.href}
+                className={({ isActive }) =>
+                  cn(
+                    "block rounded-md px-3 py-2 text-sm font-medium transition-colors",
+                    isActive
+                      ? "bg-primary/10 text-primary"
+                      : "text-muted-foreground hover:bg-accent/50"
+                  )
+                }
+                onClick={() => setIsMenuOpen(false)}
+                end
+              >
+                <span className="flex items-center gap-3">
+                  <div className="relative">
+                    <item.icon className="h-4 w-4" />
+                    {item.showIndicator && (
+                      <div className="absolute -right-1 -top-1 h-2 w-2 rounded-full bg-destructive" />
+                    )}
+                  </div>
+                  {item.name}
+                </span>
+              </NavLink>
+            ))}
+
+            <Button
+              onClick={() => {
+                setIsMenuOpen(false);
+                logOut();
+              }}
+              variant="ghost"
+              size="sm"
+              className="w-full justify-start px-3 py-2 hover:bg-destructive/10 hover:text-destructive"
+            >
+              <LogOut className="h-4 w-4 mr-3" />
+              <span>Logout</span>
+            </Button>
+          </div>
         </div>
       </nav>
     </header>
