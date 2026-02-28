@@ -1,4 +1,5 @@
 import { useAuthActions } from "@/hooks/use-auth-actions";
+import { useUnreadMessages } from "@/hooks/use-unread-messages";
 import {
   ClipboardCheck,
   LayoutDashboard,
@@ -10,20 +11,30 @@ import {
 import { NavLink } from "react-router";
 import { Button } from "./ui/button";
 import { cn } from "@/lib/utils";
-import { useState } from "react";
+import { useState, useMemo } from "react";
 
-const navegation = [
-  { name: "Dashboard", href: "/admin", icon: LayoutDashboard },
-  { name: "Messages", href: "/admin/chat", icon: MessageCircle },
-  { name: "Profile", href: "/admin/profile", icon: User },
-  { name: "Tasks", href: "/admin/tasks", icon: ClipboardCheck },
-];
 const Navbar = () => {
   const { logOut } = useAuthActions();
+  const { hasUnreadMessages } = useUnreadMessages();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
+  const navegation = useMemo(
+    () => [
+      { name: "Dashboard", href: "/admin", icon: LayoutDashboard },
+      {
+        name: "Messages",
+        href: "/admin/chat",
+        icon: MessageCircle,
+        showIndicator: hasUnreadMessages,
+      },
+      { name: "Profile", href: "/admin/profile", icon: User },
+      { name: "Tasks", href: "/admin/tasks", icon: ClipboardCheck },
+    ],
+    [hasUnreadMessages]
+  );
+
   return (
-    <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+    <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-backdrop-filter:bg-background/60">
       <nav className="container mx-auto px-4">
         <div className="flex h-14 items-center justify-between">
           {/* Logo/Brand with chat icon */}
@@ -58,7 +69,12 @@ const Navbar = () => {
                 }
                 end
               >
-                <item.icon className="mr-2 h-4 w-4" />
+                <div className="relative">
+                  <item.icon className="mr-2 h-4 w-4" />
+                  {item.showIndicator && (
+                    <div className="absolute -right-1 -top-1 h-2 w-2 rounded-full bg-destructive" />
+                  )}
+                </div>
                 <span>{item.name}</span>
               </NavLink>
             ))}
@@ -94,7 +110,12 @@ const Navbar = () => {
                 end
               >
                 <span className="flex items-center gap-3">
-                  <item.icon className="h-4 w-4" />
+                  <div className="relative">
+                    <item.icon className="h-4 w-4" />
+                    {item.showIndicator && (
+                      <div className="absolute -right-1 -top-1 h-2 w-2 rounded-full bg-destructive" />
+                    )}
+                  </div>
                   {item.name}
                 </span>
               </NavLink>

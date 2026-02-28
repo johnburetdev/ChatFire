@@ -100,7 +100,7 @@ export const useAuthActions = () => {
 
         try{
             await signOut(auth)
-            window.location.href = "auth/login"
+             window.location.href = "/auth/login";
                return {
                 success: true,
                 error: null

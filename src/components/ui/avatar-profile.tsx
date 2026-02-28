@@ -22,14 +22,6 @@ export function AvatarProfile({
   className = "",
 }: AvatarProfileProps) {
   const [imageError, setImageError] = useState(false);
-  const initials = name
-    ? name
-        .split(" ")
-        .map((n) => n[0])
-        .join("")
-        .toUpperCase()
-        .slice(0, 2)
-    : "?";
 
   const fallbackImage = `https://api.dicebear.com/7.x/initials/svg?seed=${
     name || "Guest"

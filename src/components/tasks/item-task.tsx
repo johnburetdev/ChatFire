@@ -1,5 +1,5 @@
 import type { Task } from "@/schemas/task.schemas";
-import { Check, X, Square, CheckSquare, Trash2 } from "lucide-react";
+import { Check, X, Trash2 } from "lucide-react";
 import {
   Card,
   CardAction,

@@ -1,5 +1,5 @@
 import { taskZodSchema, type TaskZodSchemaType } from "@/lib/zod-schema";
-import { Plus, ListTodo } from "lucide-react";
+import { Plus } from "lucide-react";
 import { zodResolver } from "@hookform/resolvers/zod";
 
 import { useForm } from "react-hook-form";

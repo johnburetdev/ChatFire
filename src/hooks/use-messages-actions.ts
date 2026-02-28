@@ -4,6 +4,8 @@ import {
   addDoc,
   collection,
   doc,
+  getDoc,
+  increment,
   orderBy,
   query,
   serverTimestamp,
@@ -42,9 +44,27 @@ export const useMessagesActions = (roomId: string) => {
       timestamp,
     };
 
-    await await Promise.all([
+    // Get room data to find other participants
+    const roomDoc = await getDoc(roomRef);
+    const roomData = roomDoc.data();
+
+    if (!roomData) throw new Error("Room not found");
+
+    const otherParticipants = roomData.partivipants.filter(
+      (uid: string) => uid !== user.uid
+    );
+
+    // Create update object for all other participants
+    type UnreadUpdates = { [key: string]: ReturnType<typeof increment> };
+    const unreadUpdates = otherParticipants.reduce((acc: UnreadUpdates, participantId: string) => ({
+      ...acc,
+      [`unreadMessages.${participantId}`]: increment(1),
+    }), {});
+
+    await Promise.all([
       updateDoc(roomRef, {
         lastMessage,
+        ...unreadUpdates,
       }),
       addDoc(messagesRef, messageData)
     ]);
