@@ -50,3 +50,16 @@ export const taskZodSchema = z.object({
 })
 
 export type TaskZodSchemaType = z.infer<typeof taskZodSchema>
+
+export const messageZodSchema =z.object({
+    text: z.string().trim().min(1, "Write")
+})
+
+export type messageZodSchemaType = z.infer<typeof messageZodSchema>
+
+
+export const emailFriendZodSchema = z.object({
+    email: z.string().trim().pipe(z.email())
+})
+
+export type EmailFriendZodSchema= z.infer<typeof emailFriendZodSchema>
