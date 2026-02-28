@@ -47,9 +47,13 @@ const FormTask = () => {
           name="title"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Title</FormLabel>
+              <FormLabel className="text-sm font-medium">Title</FormLabel>
               <FormControl>
-                <Input placeholder="Title" {...field} />
+                <Input 
+                  placeholder="Enter task title..." 
+                  className="focus-visible:ring-1"
+                  {...field} 
+                />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -60,16 +64,31 @@ const FormTask = () => {
           name="description"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Description</FormLabel>
+              <FormLabel className="text-sm font-medium">Description</FormLabel>
               <FormControl>
-                <Input placeholder="Description task" {...field} />
+                <Input 
+                  placeholder="Add task details..." 
+                  className="focus-visible:ring-1"
+                  {...field} 
+                />
               </FormControl>
               <FormMessage />
             </FormItem>
           )}
         />
-        <Button disabled={isPending} type="submit">
-          {isPending ? "Creating..." : "Create Task"}
+        <Button 
+          disabled={isPending} 
+          type="submit"
+          className="w-full"
+        >
+          {isPending ? (
+            <span className="flex items-center gap-2">
+              <span className="h-4 w-4 animate-spin">...</span>
+              Creating...
+            </span>
+          ) : (
+            "Create Task"
+          )}
         </Button>
       </form>
     </Form>

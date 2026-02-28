@@ -7,7 +7,7 @@ const MessagesChat = ({ roomId }: Props) => {
   const { messages } = useMessagesActions(roomId);
 
   return (
-    <div className="p-2 m-2">
+    <div className="flex flex-col gap-3 p-4">
       {messages.map((message) => (
         <MessageChat key={message.id} message={message} />
       ))}

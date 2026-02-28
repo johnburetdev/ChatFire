@@ -16,6 +16,7 @@ import { Button } from "../ui/button";
 import { useTransition } from "react";
 import { UserRoomActions } from "@/hooks/use-room-actions";
 import { toast } from "sonner";
+import { Search } from "lucide-react";
 
 interface Props {
   handleClickRoomId: (id: string) => void;
@@ -47,26 +48,38 @@ const FormSearchChat = ({ handleClickRoomId }: Props) => {
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-2">
-        <FormField
-          control={form.control}
-          name="email"
-          render={({ field }) => (
-            <FormItem>
-              <FormControl>
-                <Input type="email" placeholder="jindoe@email.com" {...field} />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <Button
-          disabled={isLoading}
-          type="submit"
-          variant={"outline"}
-          className="w-full"
-        >
-          {isLoading ? "Searching..." : "Search"}
-        </Button>
+        <div className="relative">
+          <FormField
+            control={form.control}
+            name="email"
+            render={({ field }) => (
+              <FormItem>
+                <FormControl>
+                  <Input 
+                    type="email" 
+                    placeholder="Search by email..." 
+                    className="pr-12"
+                    {...field} 
+                  />
+                </FormControl>
+                <Button
+                  size="sm"
+                  variant="ghost"
+                  className="absolute right-0 top-0 h-full px-3 py-2 hover:bg-transparent"
+                  disabled={isLoading}
+                  type="submit"
+                >
+                  {isLoading ? (
+                    <span className="h-4 w-4 animate-spin">...</span>
+                  ) : (
+                    <Search className="h-4 w-4" />
+                  )}
+                </Button>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+        </div>
       </form>
     </Form>
   );
