@@ -1,8 +1,8 @@
 export const firebaseConfig = {
-  apiKey: "AIzaSyBBioN7GFbeKSLPnfFKoyXzyYzCre66hMg",
-  authDomain: "chat-fire-9f065.firebaseapp.com",
-  projectId: "chat-fire-9f065",
-  storageBucket: "chat-fire-9f065.firebasestorage.app",
-  messagingSenderId: "1093946309993",
-  appId: "1:1093946309993:web:402e23854e810bea4691f8"
+  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
+  authDomain:  import.meta.env.VITE_FIREBASE_AUTHDOMINIAN,
+  projectId:  import.meta.env.VITE_FIREBASE_PROYECTID,
+  storageBucket:  import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId:  import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
+  appId:  import.meta.env.VITE_FIREBASE_APP_ID
 };
